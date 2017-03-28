@@ -37,6 +37,8 @@ namespace Grades
             grades.Add(grade);
         }
 
+        public string Name; //public Name field
+
         // grade stores in grades field, private encapsulates grades field
         private List<float> grades;
     }

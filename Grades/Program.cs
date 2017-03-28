@@ -13,6 +13,7 @@ namespace Grades
     {
         static void Main(string[] args)
         {
+
             GradeBook book = new GradeBook(); //create new instance of GradeBook, book pointer to GradeBook object
 
             book.AddGrade(91);
@@ -25,6 +26,7 @@ namespace Grades
             Console.WriteLine("Highest Grade: " + stats.HighestGrade);
             Console.WriteLine(" Lowest Grade: " + stats.LowestGrade);
             
+
             //Example of using book pointing (by reference) to GradeBook object
             //GradeBook book2 = book;
             //book2.AddGrade(75);
