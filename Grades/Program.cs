@@ -16,8 +16,10 @@ namespace Grades
 
             GradeBook book = new GradeBook(); //create new instance of GradeBook, book pointer to GradeBook object
 
-            book.NameChanged = new NameChangedDelegate(OnNameChanged);
-            book.NameChanged = new NameChangedDelegate(OnNameChanged2);
+            //book.NameChanged += new NameChangedDelegate(OnNameChanged);
+            //book.NameChanged += new NameChangedDelegate(OnNameChanged2);
+            book.NameChanged += OnNameChanged;
+            //book.NameChanged += OnNameChanged2;
 
             book.Name = "Test Grade Book";
             book.Name = "Grade Book";
@@ -43,15 +45,20 @@ namespace Grades
             //book2.AddGrade(75);
         }
 
-        static void OnNameChanged(string existingName, string newName)
+        static void OnNameChanged(object sender, NameChangedEventArgs args)
         {
-            Console.WriteLine($"Grade book changing name from {existingName} to {newName}");
+            Console.WriteLine($"Grade book changing name from {args.ExistingName} to {args.NewName}");
         }
 
-        static void OnNameChanged2(string existingName, string newName)
-        {
-            Console.WriteLine("***");
-        }
+        //static void OnNameChanged(string existingName, string newName)
+        //{
+        //    Console.WriteLine($"Grade book changing name from {existingName} to {newName}");
+        //}
+
+        //static void OnNameChanged2(string existingName, string newName)
+        //{
+        //    Console.WriteLine("***");
+        //}
 
         static void WriteResult(string description, int result)
         {
