@@ -12,6 +12,7 @@ namespace Grades
         public GradeBook() //Constructor: ctor+tab+tab
         {
             // Initialize fields and data of an object, set default values, create other objects for use
+            _name = "Emppty";
             grades = new List<float>();
         }
 
@@ -37,7 +38,29 @@ namespace Grades
             grades.Add(grade);
         }
 
-        public string Name; //public Name field
+        public string Name //public Name property
+        {
+            get
+            {
+                return _name;
+            }
+
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    if(_name != value)
+                    {
+                        NameChanged(_name, value);
+                    }
+                    _name = value;
+                }
+            }
+        }
+
+        public NameChangedDelegate NameChanged;
+
+        private string _name; //private field
 
         // grade stores in grades field, private encapsulates grades field
         private List<float> grades;
