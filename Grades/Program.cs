@@ -24,9 +24,21 @@ namespace Grades
             //book.Name = "Test Grade Book";
             //book.Name = "Grade Book";
 
+            try
+            {
+                Console.WriteLine("Enter a name");
+                book.Name = Console.ReadLine();
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
             book.AddGrade(91);
             book.AddGrade(89.5f);
             book.AddGrade(75);
+            book.WriteGrades(Console.Out);
 
             GradeStatistics stats = book.ComputeStatistics();
 
