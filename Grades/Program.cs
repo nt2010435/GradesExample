@@ -44,6 +44,8 @@ namespace Grades
 
             WriteResult("Grade", stats.LetterGrade);
 
+            WriteResult(stats.LetterGrade, stats.Description);
+
             //Example of using book pointing (by reference) to GradeBook object
             //GradeBook book2 = book;
             //book2.AddGrade(75);
