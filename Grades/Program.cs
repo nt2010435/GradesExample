@@ -18,37 +18,41 @@ namespace Grades
 
             //book.NameChanged += new NameChangedDelegate(OnNameChanged);
             //book.NameChanged += new NameChangedDelegate(OnNameChanged2);
-            book.NameChanged += OnNameChanged;
+            //book.NameChanged += OnNameChanged;
             //book.NameChanged += OnNameChanged2;
 
-            book.Name = "Test Grade Book";
-            book.Name = "Grade Book";
+            //book.Name = "Test Grade Book";
+            //book.Name = "Grade Book";
+
             book.AddGrade(91);
             book.AddGrade(89.5f);
             book.AddGrade(75);
 
             GradeStatistics stats = book.ComputeStatistics();
 
-            Console.WriteLine(book.Name);
+            //Console.WriteLine(book.Name);
 
             //Console.WriteLine("Average Grade: " + stats.AverageGrade);
             WriteResult("Average", stats.AverageGrade); //Using WriteResult with float parameter
 
             //Console.WriteLine("Highest Grade: " + stats.HighestGrade);
-            WriteResult("Highest", (int)stats.HighestGrade); //(int) type cast the floating point to integer
+            //WriteResult("Highest", (int)stats.HighestGrade); //(int) type cast the floating point to integer
+            WriteResult("Highest", stats.HighestGrade);
 
             //Console.WriteLine(" Lowest Grade: " + stats.LowestGrade);
             WriteResult("Lowest", stats.LowestGrade); //Using WriteResult with float parameter
+
+            WriteResult("Grade", stats.LetterGrade);
 
             //Example of using book pointing (by reference) to GradeBook object
             //GradeBook book2 = book;
             //book2.AddGrade(75);
         }
 
-        static void OnNameChanged(object sender, NameChangedEventArgs args)
-        {
-            Console.WriteLine($"Grade book changing name from {args.ExistingName} to {args.NewName}");
-        }
+        //static void OnNameChanged(object sender, NameChangedEventArgs args)
+        //{
+        //    Console.WriteLine($"Grade book changing name from {args.ExistingName} to {args.NewName}");
+        //}
 
         //static void OnNameChanged(string existingName, string newName)
         //{
@@ -60,9 +64,15 @@ namespace Grades
         //    Console.WriteLine("***");
         //}
 
-        static void WriteResult(string description, int result)
+        //static void WriteResult(string description, int result)
+        //{
+        //    Console.WriteLine(description + ": " + result);
+        //}
+
+        static void WriteResult(string description, string result)
         {
-            Console.WriteLine(description + ": " + result);
+            Console.WriteLine($"{description}: {result}"); //No need to pass description and result as parameters with this format
+
         }
 
         static void WriteResult(string description, float result)
