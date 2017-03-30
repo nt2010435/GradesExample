@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,22 +25,17 @@ namespace Grades
             //book.Name = "Test Grade Book";
             //book.Name = "Grade Book";
 
-            try
-            {
-                Console.WriteLine("Enter a name");
-                book.Name = Console.ReadLine();
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            GetBookName(book);
 
+            AddGrades(book);
 
-            book.AddGrade(91);
-            book.AddGrade(89.5f);
-            book.AddGrade(75);
-            book.WriteGrades(Console.Out);
+            SaveGrades(book);
 
+            WriteResults(book);
+        }
+
+        private static void WriteResults(GradeBook book)
+        {
             GradeStatistics stats = book.ComputeStatistics();
 
             //Console.WriteLine(book.Name);
@@ -61,6 +57,36 @@ namespace Grades
             //Example of using book pointing (by reference) to GradeBook object
             //GradeBook book2 = book;
             //book2.AddGrade(75);
+        }
+
+        private static void SaveGrades(GradeBook book)
+        {
+            using (StreamWriter outputFile = File.CreateText("grades.txt"))
+            {
+                book.WriteGrades(outputFile);
+            }
+
+            //book.WriteGrades(Console.Out);
+        }
+
+        private static void AddGrades(GradeBook book)
+        {
+            book.AddGrade(91);
+            book.AddGrade(89.5f);
+            book.AddGrade(75);
+        }
+
+        private static void GetBookName(GradeBook book)
+        {
+            try
+            {
+                Console.WriteLine("Enter a name");
+                book.Name = Console.ReadLine();
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         //static void OnNameChanged(object sender, NameChangedEventArgs args)

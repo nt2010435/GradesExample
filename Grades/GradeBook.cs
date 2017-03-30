@@ -69,7 +69,7 @@ namespace Grades
                     throw new ArgumentException("Name cannot be null or empty");
                 }
 
-                if (_name != value)
+                if (_name != value && NameChanged != null)
                 {
                     //NameChanged(_name, value);
                     NameChangedEventArgs args = new NameChangedEventArgs();
