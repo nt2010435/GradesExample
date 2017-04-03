@@ -19,6 +19,8 @@ namespace Grades
 
         public GradeStatistics ComputeStatistics()
         {
+            Console.WriteLine("GradeBook::ComputeStatistics");
+
             GradeStatistics stats = new GradeStatistics();
             float sum = 0;
 
@@ -89,7 +91,9 @@ namespace Grades
 
         private string _name; //private field
 
-        // grade stores in grades field, private encapsulates grades field
-        private List<float> grades;
+        // grade stores in grades field, private encapsulates grades field, 'private' for access within current class only
+        //private List<float> grades;
+
+        protected List<float> grades; //'protected' for access within this class or derived class
     }
 }
