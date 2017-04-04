@@ -44,6 +44,11 @@ namespace Grades
         {
             GradeStatistics stats = book.ComputeStatistics();
 
+            foreach (float grade in book)
+            {
+                Console.WriteLine(grade);
+            }
+
             //Console.WriteLine(book.Name);
 
             //Console.WriteLine("Average Grade: " + stats.AverageGrade);

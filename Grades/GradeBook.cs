@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,6 +53,11 @@ namespace Grades
         public override void AddGrade(float grade) //Method
         {
             grades.Add(grade);
+        }
+
+        public override IEnumerator GetEnumerator()
+        {
+            return grades.GetEnumerator();
         }
 
         // grade stores in grades field, private encapsulates grades field, 'private' for access within current class only
