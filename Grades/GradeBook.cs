@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 //Example of using classes, objects, constructor, public classes, public and private methods
 namespace Grades
 {
-    public class GradeBook  //internal class can only used by codes inside the same project 
+    public class GradeBook : GradeTracker  //internal class can only used by codes inside the same project 
     {
         public GradeBook() //Constructor: ctor+tab+tab
         {
@@ -17,7 +17,7 @@ namespace Grades
             grades = new List<float>();
         }
 
-        public GradeStatistics ComputeStatistics()
+        public override GradeStatistics ComputeStatistics()
         {
             Console.WriteLine("GradeBook::ComputeStatistics");
 
@@ -36,7 +36,7 @@ namespace Grades
             return stats;
         }
 
-        public void WriteGrades(TextWriter destination)
+        public override void WriteGrades(TextWriter destination)
         {
             for (int i = 0; i < grades.Count; i++)
             {
@@ -49,47 +49,10 @@ namespace Grades
             //}
         }
 
-        public void AddGrade(float grade) //Method
+        public override void AddGrade(float grade) //Method
         {
             grades.Add(grade);
         }
-
-        public string Name //public Name property
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                //if (!String.IsNullOrEmpty(value))
-                //{
-
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Name cannot be null or empty");
-                }
-
-                if (_name != value && NameChanged != null)
-                {
-                    //NameChanged(_name, value);
-                    NameChangedEventArgs args = new NameChangedEventArgs();
-
-                    args.ExistingName = _name;
-                    args.NewName = value;
-
-                    NameChanged(this, args);
-                }
-                _name = value;
-                //}
-            }
-        }
-
-        //public NameChangedDelegate NameChanged;
-        public event NameChangedDelegate NameChanged;
-
-        private string _name; //private field
 
         // grade stores in grades field, private encapsulates grades field, 'private' for access within current class only
         //private List<float> grades;
